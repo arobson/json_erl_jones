@@ -1,0 +1,6 @@
+{application, json_erl_jones, [
+	{description, "json that hurts slightly less"},
+	{vsn, "0.0.1"},
+	{registered, []},
+	{applications, [kernel]}
+ ]}.
