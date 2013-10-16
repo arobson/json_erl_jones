@@ -34,7 +34,10 @@ encode(PropList) ->
 filter_list(X) -> X /= [].
 
 format(X) ->
-	{prep(X)}.
+	case prep(X) of
+		[{_}|_]=L -> L;
+		O -> {O}
+	end.
 
 prep(X) when is_tuple(X) -> prep_tuple(X);
 prep(X) when is_list(X) -> prep_list(X);

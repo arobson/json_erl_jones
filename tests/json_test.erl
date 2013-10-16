@@ -12,8 +12,8 @@ tuple_test() ->
 
 list_of_tuple_test() ->
 	T2 = [{"a","one"},{"b", 2}],
-	Out = json:prep(T2),
-	?assertEqual([{<<"a">>,<<"one">>},{<<"b">>,2}], Out).
+	Out = json:format(T2),
+	?assertEqual({[{<<"a">>,<<"one">>},{<<"b">>,2}]}, Out).
 
 nested_tuples_test() ->
 	T3 = [{"a", [{"b", 1}, {c, test}]}],
@@ -22,7 +22,7 @@ nested_tuples_test() ->
 
 list_of_list_test() ->
 	T4 = [[{"a", 1}],[{"b", 2}],[{"c",3}]],
-	Out = json:prep(T4),
+	Out = json:format(T4),
 	?assertEqual([{[{<<"a">>, 1}]}, {[{<<"b">>, 2}]}, {[{<<"c">>, 3}]}], Out).
 
 nested_list_of_list_test() ->
