@@ -21,7 +21,7 @@
 %% That's right. I put this in here. I prefer this to cramming
 %% tons of test code into my relatively clean module.
 %% I've heard the arguments against, but tests IN the module =:= gross.
--ifndef(NOTEST). 
+-ifdef(TEST). 
 -compile([export_all]).
 -endif.
 
@@ -30,8 +30,6 @@ decode(Json) ->
 
 encode(PropList) ->
 	jiffy:encode(format(PropList)).
-
-filter_list(X) -> X /= [].
 
 format(X) ->
 	case prep(X) of
