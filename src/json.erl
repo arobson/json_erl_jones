@@ -32,10 +32,7 @@ encode(PropList) ->
 	jiffy:encode(format(PropList)).
 
 format(X) ->
-	case prep(X) of
-		[{_}|_]=L -> L;
-		O -> {O}
-	end.
+	prep(X).
 
 prep(X) when is_tuple(X) -> prep_tuple(X);
 prep(X) when is_list(X) -> prep_list(X);
@@ -45,11 +42,13 @@ prep(X) -> X.
 prep_atom(X) -> atom_to_binary(X, utf8).
 
 prep_list([]) -> [];
-prep_list([[{_,_}|_]=H|T]) -> [{prep(H)}|prep(T)];
+prep_list([[{_,_}|_]=H|T]) -> [prep(H)|prep(T)];
 prep_list([{_,_}=H|T]) ->
 	case T of
-		[] -> [prep(H)];
-		_ -> [prep(H)] ++ prep(T)
+		[] -> {[prep(H)]};
+		_ ->
+			{TL} = prep(T),
+			{[prep(H)] ++ TL}
 	end;
 prep_list([H|T]=L) ->
 	case io_lib:printable_list(L) orelse io_lib:printable_unicode_list(L) of
