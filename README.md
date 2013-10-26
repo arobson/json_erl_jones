@@ -12,6 +12,11 @@ json:encode([{a, test}]). %% outputs <<"{\"a\": \"test\"}">> a.k.a '{"a": "test"
 json:decode(<<"{\"a\": \"test\"}">>). %% outputs [{a, <<"test">>}]
 ```
 
+Need pretty JSON?
+```erlang
+json:encode([{a, test}], [pretty]). %% passes the pretty option to Jiffy.
+```
+
 ##Using it
 You could just rip the json.erl file out and dump it into your source. It's cool. I won't tell anyone. Just be aware, I'm a novice Erlanger. This could be the dumbest. thing. ever.
 

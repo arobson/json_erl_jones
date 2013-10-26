@@ -13,6 +13,7 @@
 
 -export([ 
 			encode/1,
+			encode/2,
 			decode/1
 		]).
 
@@ -29,10 +30,10 @@ decode(Json) ->
 	strip(jiffy:decode(Json)).
 
 encode(PropList) ->
-	jiffy:encode(format(PropList)).
+	jiffy:encode(prep(PropList)).
 
-format(X) ->
-	prep(X).
+encode(PropList, Options) ->
+	jiffy:encode(prep(PropList), Options).
 
 prep(X) when is_tuple(X) -> prep_tuple(X);
 prep(X) when is_list(X) -> prep_list(X);
