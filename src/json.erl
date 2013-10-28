@@ -37,7 +37,12 @@ encode(PropList, Options) ->
 
 prep(X) when is_tuple(X) -> prep_tuple(X);
 prep(X) when is_list(X) -> prep_list(X);
-prep(X) when is_atom(X) -> prep_atom(X);
+prep(X) when is_atom(X) -> 
+	case X of 
+		true -> true;
+		false -> false;
+		_ -> prep_atom(X)
+	end;
 prep(X) -> X.
 
 prep_atom(X) -> atom_to_binary(X, utf8).
