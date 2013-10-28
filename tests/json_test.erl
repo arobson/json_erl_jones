@@ -55,6 +55,6 @@ json_object_list_test() ->
 	?assertEqual([[{a,<<"test">>}],[{b,10}]], Out).
 
 json_nested_test() ->
-	J3 = <<"{\"a\": [{\"b\": \"test\"}, {\"c\": \"test\"}]}">>,
+	J3 = <<"{\"A\": [{\"b\": \"test\"}, {\"C\": \"test\"}]}">>,
 	Out = json:decode(J3),
 	?assertEqual([{a, [[{b, <<"test">>}],[{c, <<"test">>}]]}], Out).

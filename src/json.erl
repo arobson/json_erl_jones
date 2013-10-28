@@ -81,7 +81,8 @@ strip_list([H|T]) ->
 	end.
 
 strip_tuple({X,Y}) ->
-	NewX = to_atom(X),
+	[H|T] = bitstring_to_list(X),
+	NewX = list_to_atom([string:to_lower(H)] ++ T),
 	{NewX, strip(Y)};
 strip_tuple({X}) when is_list(X) -> strip(X).
 
